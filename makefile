@@ -15,11 +15,12 @@ INCLUDES = $(shell echo src/*.h)
 
 LDLIBS = -lrt
 
-all: tests.out
+test: tests.out
+	./tests.out
 
 tests.out: test/test_splay_tree.c src/splay_tree.c src/splay_tree.h
 	@echo Compiling $@
-	@$(CC) $(CFLAGS) src/splay_tree.c test/vendor/unity.c test/test_splay_tree.c -o splay_tests.out
+	@$(CC) $(CFLAGS) src/splay_tree.c test/vendor/unity.c test/test_splay_tree.c -o tests.out
 
 memcheck: tests.out
 	@valgrind $(VFLAGS) ./tests.out
